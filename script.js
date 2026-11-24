@@ -258,6 +258,43 @@
     frame();
   })();
 
+  // ---------- coverflow cards ----------
+  (function () {
+    var root = document.getElementById('cf'); if (!root) return;
+    var cards = $('.cf-card', root), n = cards.length, active = 2, timer, dots = document.getElementById('cf-dots');
+    cards.forEach(function (_, i) {
+      var b = document.createElement('button'); b.setAttribute('aria-label', 'Show ' + (i + 1));
+      b.addEventListener('click', function () { go(i); restart(); }); dots.appendChild(b);
+    });
+    function go(i) {
+      active = (i + n) % n; var half = Math.floor(n / 2);
+      cards.forEach(function (c, k) {
+        var o = ((k - active + n + half) % n) - half;
+        c.style.setProperty('--cfo', o); c.style.setProperty('--cfa', Math.abs(o));
+        c.setAttribute('data-a', Math.abs(o)); c.classList.toggle('on', o === 0);
+        c.setAttribute('aria-hidden', o === 0 ? 'false' : 'true');
+      });
+      $('button', dots).forEach(function (b, k) { b.classList.toggle('on', k === active); });
+    }
+    function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!root.matches(':hover')) go(active + 1); }, 4500); }
+    cards.forEach(function (c, k) {
+      c.addEventListener('click', function (e) { if (k !== active && !e.target.closest('a')) { go(k); restart(); } });
+      c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(k); restart(); } });
+    });
+    document.getElementById('cf-prev').addEventListener('click', function () { go(active - 1); restart(); });
+    document.getElementById('cf-next').addEventListener('click', function () { go(active + 1); restart(); });
+    root.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { go(active - 1); restart(); } if (e.key === 'ArrowRight') { go(active + 1); restart(); }
+    });
+    var sx = null;
+    root.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+    root.addEventListener('pointerup', function (e) {
+      if (sx === null) return; var d = e.clientX - sx; sx = null;
+      if (Math.abs(d) > 50) { go(active + (d < 0 ? 1 : -1)); restart(); }
+    });
+    go(active); restart();
+  })();
+
   // ---------- click-to-select card stroke ----------
   $('.s-card, .brand, .r-card, .pillar').forEach(function (card) {
     card.setAttribute('tabindex', '0');
