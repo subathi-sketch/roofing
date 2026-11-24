@@ -672,3 +672,10 @@ summary{font-size:16.5px}
 @media(max-width:640px){.cta{padding:70px 0}.cta-actions{gap:20px}.cta-media{padding:0 0 22px 0}.cta-float{padding:9px 14px 9px 9px}.cta-float b{font-size:12.5px}.cta-float small{font-size:10.5px}.cta-ring{display:none}.cta-float-b{top:14px}}
 @media(prefers-reduced-motion:reduce){.cta-ring,.cta-float{animation:none}}
 .cta .chev{left:auto;right:1.5%;top:22px;width:190px;transform:none;color:rgba(255,255,255,.16)}
+
+/* ===== no horizontal overflow: nothing may be cut or shifted on the right ===== */
+html{overflow-x:clip}
+body{overflow-x:clip;max-width:100%}
+.numbers{overflow:hidden}
+.showcase,.showcase-pin{width:100%;max-width:100%}
+.tile-grid{left:0;right:0;width:100%}

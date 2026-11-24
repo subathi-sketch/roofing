@@ -197,19 +197,29 @@
     }
     // tile grid
     var grid = document.getElementById('tile-grid'), tiles = [], cols = 6, rows = 4;
+    var ratio = 1.5;
     function build() {
       grid.innerHTML = ''; tiles = [];
       var small = window.innerWidth <= 640; cols = small ? 4 : 6; rows = small ? 6 : 4;
+      // size each tile's background so the whole grid shows the photo like object-fit: cover (no stretching, nothing cut off unevenly)
+      var W = grid.clientWidth || window.innerWidth, H = grid.clientHeight || window.innerHeight;
+      var iw, ih;
+      if (W / H > ratio) { iw = W; ih = W / ratio; } else { ih = H; iw = H * ratio; }
+      var ox = (iw - W) / 2, oy = (ih - H) / 2, tw = W / cols, th = H / rows;
       for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
         var t = document.createElement('i');
         t.style.backgroundImage = 'url(' + grid.dataset.img + ')';
-        t.style.backgroundSize = (cols * 100) + '% ' + (rows * 100) + '%';
-        t.style.backgroundPosition = (cols > 1 ? c / (cols - 1) * 100 : 0) + '% ' + (rows > 1 ? r / (rows - 1) * 100 : 0) + '%';
+        t.style.backgroundSize = iw + 'px ' + ih + 'px';
+        t.style.backgroundPosition = (-(c * tw + ox)) + 'px ' + (-(r * th + oy)) + 'px';
         t.dataset.d = Math.hypot(c - (cols - 1) / 2, r - (rows - 1) / 2).toFixed(2);
         grid.appendChild(t); tiles.push(t);
       }
     }
+    var probe = new Image();
+    probe.onload = function () { ratio = probe.naturalWidth / probe.naturalHeight; build(); };
+    probe.src = grid.dataset.img;
     build();
+    window.addEventListener('resize', function () { build(); });
     var lastSmall = window.innerWidth <= 640;
     window.addEventListener('resize', function () { var s = window.innerWidth <= 640; if (s !== lastSmall) { lastSmall = s; build(); } });
     var sc = document.getElementById('showcase'), heroCopy = document.querySelector('.hero-copy'), heroEl = document.querySelector('.hero');
