@@ -105,7 +105,7 @@
   });
   $('.split-head > div, .pf-text, .about-text, .svc-map, .tm-intro, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
   $('.split-head > p, .cta-media, .pf-slider, .about-collage, .contact-form, .tm-stage, .svc-side').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
-  $('.cta-inner, .numbers-head, .brands .center, details, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
+  $('.cta-inner, .numbers-head, .brands .center, .faq-item, .faq-intro, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
@@ -293,6 +293,19 @@
       if (Math.abs(d) > 50) { go(active + (d < 0 ? 1 : -1)); restart(); }
     });
     go(active); restart();
+  })();
+
+  // ---------- FAQ accordion ----------
+  (function () {
+    var items = $('.faq-item');
+    items.forEach(function (it) {
+      var q = it.querySelector('.faq-q');
+      q.addEventListener('click', function () {
+        var open = it.classList.contains('open');
+        items.forEach(function (o) { o.classList.remove('open'); o.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); });
+        if (!open) { it.classList.add('open'); q.setAttribute('aria-expanded', 'true'); }
+      });
+    });
   })();
 
   // ---------- testimonials carousel ----------
