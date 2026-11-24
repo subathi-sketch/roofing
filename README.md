@@ -1,4 +1,4 @@
-# Ridgeline Roofing & Exteriors – demo site
+# Harbor & Pine Roofing Co. – demo site
 
 Static roofing website (HTML, CSS, vanilla JS). No build step.
 
