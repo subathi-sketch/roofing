@@ -565,28 +565,52 @@
       </aside>
       <form class="ct-form" id="contact-form" novalidate>
         <div class="ct-formwrap">
-          <h3>Request your free inspection</h3>
-          <p class="ct-sub">It takes about a minute. No obligation, no pressure.</p>
-          <fieldset class="ct-topics">
-            <legend>I need help with</legend>
-            <div class="ct-chips"><label class="ct-chip"><input type="radio" name="topic" value="Roof replacement" checked><span>Roof replacement</span></label><label class="ct-chip"><input type="radio" name="topic" value="Repair"><span>Repair</span></label><label class="ct-chip"><input type="radio" name="topic" value="Storm damage"><span>Storm damage</span></label><label class="ct-chip"><input type="radio" name="topic" value="Inspection"><span>Inspection</span></label><label class="ct-chip"><input type="radio" name="topic" value="Something else"><span>Something else</span></label></div>
-          </fieldset>
-          <div class="ct-grid">
-            <div class="ct-field"><input id="fname" name="fname" type="text" placeholder=" " required autocomplete="given-name"><label for="fname">First name</label></div>
-            <div class="ct-field"><input id="lname" name="lname" type="text" placeholder=" " required autocomplete="family-name"><label for="lname">Last name</label></div>
-            <div class="ct-field"><input id="phone" name="phone" type="tel" placeholder=" " required autocomplete="tel"><label for="phone">Phone</label></div>
-            <div class="ct-field"><input id="email" name="email" type="email" placeholder=" " required autocomplete="email"><label for="email">Email</label></div>
+          <div class="wz-head">
+            <h3>Request your free inspection</h3>
+            <p class="ct-sub">Three quick steps. No obligation, no pressure.</p>
           </div>
-          <div class="ct-field ct-area"><textarea id="msg" name="msg" rows="4" placeholder=" "></textarea><label for="msg">Tell us a bit about your roof (optional)</label></div>
-          <fieldset class="ct-how">
-            <legend>Best way to reach you</legend>
-            <div class="ct-seg">
-              <label><input type="radio" name="how" value="Call" checked><span>Call</span></label>
-              <label><input type="radio" name="how" value="Text"><span>Text</span></label>
-              <label><input type="radio" name="how" value="Email"><span>Email</span></label>
+          <ol class="wz-steps" aria-label="Progress">
+            <li class="wz-dot on" data-s="0"><span>1</span><em>Service</em></li>
+            <li class="wz-dot" data-s="1"><span>2</span><em>Details</em></li>
+            <li class="wz-dot" data-s="2"><span>3</span><em>Contact</em></li>
+            <span class="wz-line"><i id="wz-fill"></i></span>
+          </ol>
+
+          <div class="wz-step on" data-s="0">
+            <p class="wz-q">What do you need help with?</p>
+            <div class="wz-opts">
+              <label class="wz-opt"><input type="radio" name="topic" value="New roof" required><span class="wz-card"><span class="wz-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4l9 8M6 10v10h12V10"/></svg></span><b>New roof</b><small>Full replacement</small><i class="wz-tick" aria-hidden="true"></i></span></label><label class="wz-opt"><input type="radio" name="topic" value="Repair" required><span class="wz-card"><span class="wz-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6 4 4M4 20l5-1 10-10-4-4L5 15z"/></svg></span><b>Repair</b><small>Fix a problem area</small><i class="wz-tick" aria-hidden="true"></i></span></label><label class="wz-opt"><input type="radio" name="topic" value="Storm damage" required><span class="wz-card"><span class="wz-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 16a4 4 0 1 1 .6-7.95A5.5 5.5 0 0 1 18 9a3.5 3.5 0 0 1 0 7zM9 19l1.5-3M13 19l1.5-3"/></svg></span><b>Storm damage</b><small>Hail, wind, trees</small><i class="wz-tick" aria-hidden="true"></i></span></label><label class="wz-opt"><input type="radio" name="topic" value="Leak" required><span class="wz-card"><span class="wz-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span><b>Leak</b><small>Find and stop it</small><i class="wz-tick" aria-hidden="true"></i></span></label><label class="wz-opt"><input type="radio" name="topic" value="Inspection" required><span class="wz-card"><span class="wz-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 5 5"/></svg></span><b>Inspection</b><small>Free roof check</small><i class="wz-tick" aria-hidden="true"></i></span></label><label class="wz-opt"><input type="radio" name="topic" value="Something else" required><span class="wz-card"><span class="wz-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg></span><b>Something else</b><small>Tell us more</small><i class="wz-tick" aria-hidden="true"></i></span></label>
             </div>
-          </fieldset>
-          <button class="btn btn-lime btn-block btn-lg ct-submit" type="submit">Send my request <span aria-hidden="true">&rarr;</span></button>
+            <p class="wz-err" aria-live="polite"></p>
+          </div>
+
+          <div class="wz-step" data-s="1">
+            <p class="wz-q">Tell us about the property</p>
+            <fieldset><legend>Property type</legend><div class="ct-seg"><label><input type="radio" name="ptype" value="House" checked><span>House</span></label><label><input type="radio" name="ptype" value="Townhome"><span>Townhome</span></label><label><input type="radio" name="ptype" value="Commercial"><span>Commercial</span></label></div></fieldset>
+            <fieldset><legend>Current roof</legend><div class="ct-chips"><label class="ct-chip"><input type="radio" name="rmat" value="Shingle" checked><span>Shingle</span></label><label class="ct-chip"><input type="radio" name="rmat" value="Metal"><span>Metal</span></label><label class="ct-chip"><input type="radio" name="rmat" value="Tile"><span>Tile</span></label><label class="ct-chip"><input type="radio" name="rmat" value="Flat"><span>Flat</span></label><label class="ct-chip"><input type="radio" name="rmat" value="Not sure"><span>Not sure</span></label></div></fieldset>
+            <fieldset><legend>How soon?</legend><div class="ct-seg"><label><input type="radio" name="when" value="As soon as possible" checked><span>As soon as possible</span></label><label><input type="radio" name="when" value="Within a month"><span>Within a month</span></label><label><input type="radio" name="when" value="Just planning"><span>Just planning</span></label></div></fieldset>
+            <div class="wz-zip"><div class="ct-field"><input id="zip" name="zip" type="text" placeholder=" " required inputmode="numeric" maxlength="5" autocomplete="postal-code"><label for="zip">Property ZIP code</label></div></div>
+            <p class="wz-err" aria-live="polite"></p>
+          </div>
+
+          <div class="wz-step" data-s="2">
+            <p class="wz-q">How can we reach you?</p>
+            <div class="ct-grid">
+              <div class="ct-field"><input id="fname" name="fname" type="text" placeholder=" " required autocomplete="given-name"><label for="fname">First name</label></div>
+              <div class="ct-field"><input id="lname" name="lname" type="text" placeholder=" " required autocomplete="family-name"><label for="lname">Last name</label></div>
+              <div class="ct-field"><input id="phone" name="phone" type="tel" placeholder=" " required autocomplete="tel"><label for="phone">Phone</label></div>
+              <div class="ct-field"><input id="email" name="email" type="email" placeholder=" " required autocomplete="email"><label for="email">Email</label></div>
+            </div>
+            <div class="ct-field ct-area"><textarea id="msg" name="msg" rows="3" placeholder=" "></textarea><label for="msg">Anything we should know? (optional)</label></div>
+            <fieldset><legend>Best way to reach you</legend><div class="ct-seg"><label><input type="radio" name="how" value="Call" checked><span>Call</span></label><label><input type="radio" name="how" value="Text"><span>Text</span></label><label><input type="radio" name="how" value="Email"><span>Email</span></label></div></fieldset>
+            <p class="wz-err" aria-live="polite"></p>
+          </div>
+
+          <div class="wz-nav">
+            <button type="button" class="wz-back" hidden>&larr; Back</button>
+            <button type="button" class="btn btn-lime btn-lg wz-next">Continue <span aria-hidden="true">&rarr;</span></button>
+            <button type="submit" class="btn btn-lime btn-lg wz-send" hidden>Send my request <span aria-hidden="true">&rarr;</span></button>
+          </div>
           <p class="ct-priv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Your details stay private. We never share or sell them.</p>
         </div>
         <div class="ct-success" role="status" aria-live="polite">

@@ -52,10 +52,66 @@
   });
   var cf = document.getElementById('contact-form');
   cf.addEventListener('submit', function (e) {
-    e.preventDefault(); if (!valid(cf)) return;
+    e.preventDefault(); if (cf.dataset.wizard) return; if (!valid(cf)) return;
     cf.classList.add('sent');
     // TODO: connect to your form handler / CRM here
   });
+
+  // ---------- contact wizard ----------
+  (function () {
+    var form = cf; if (!form || !form.querySelector('.wz-step')) return;
+    form.dataset.wizard = '1';
+    var steps = $('.wz-step', form), dots = $('.wz-dot', form), fill = document.getElementById('wz-fill'),
+        next = form.querySelector('.wz-next'), back = form.querySelector('.wz-back'), send = form.querySelector('.wz-send'), cur = 0;
+    function show(n, dir) {
+      cur = n;
+      steps.forEach(function (s, i) { s.classList.toggle('on', i === n); s.classList.toggle('back', dir === 'back'); });
+      dots.forEach(function (d, i) { d.classList.toggle('on', i === n); d.classList.toggle('done', i < n); });
+      fill.style.width = (n / (steps.length - 1) * 100) + '%';
+      back.hidden = n === 0; next.hidden = n === steps.length - 1; send.hidden = n !== steps.length - 1;
+      var f = steps[n].querySelector('input[type=text],input[type=tel],input[type=email]');
+      if (f && n > 0) setTimeout(function () { f.focus({ preventScroll: true }); }, 350);
+    }
+    function err(msg, el) {
+      var p = steps[cur].querySelector('.wz-err'); if (p) p.textContent = msg || '';
+      if (el && msg) { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); }
+    }
+    function check() {
+      err('');
+      if (cur === 0) {
+        if (!form.querySelector('input[name=topic]:checked')) { err('Please choose what you need help with.', steps[0].querySelector('.wz-opts')); return false; }
+      }
+      if (cur === 1) {
+        var z = form.querySelector('#zip'), ok = /^\d{5}$/.test(z.value.trim());
+        z.classList.toggle('invalid', !ok);
+        if (!ok) { err('Please enter a 5-digit ZIP code.', steps[1].querySelector('.wz-zip')); return false; }
+      }
+      if (cur === 2) {
+        var bad = false;
+        $('input[required]', steps[2]).forEach(function (f) {
+          var v = f.value.trim(), isBad = !v || (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+          f.classList.toggle('invalid', isBad); if (isBad) bad = true;
+        });
+        if (bad) { err('Please complete your name, phone and a valid email.'); return false; }
+      }
+      return true;
+    }
+    function go() { if (check()) show(cur + 1, 'fwd'); }
+    next.addEventListener('click', go);
+    back.addEventListener('click', function () { err(''); show(cur - 1, 'back'); });
+    var zip = form.querySelector('#zip');
+    zip.addEventListener('input', function () { zip.value = zip.value.replace(/\D/g, '').slice(0, 5); });
+    $('input[name=topic]', form).forEach(function (r) { r.addEventListener('change', function () { err(''); }); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (cur < steps.length - 1) { go(); return; }
+      if (!check()) return;
+      form.classList.add('sent');
+      // TODO: connect to your form handler / CRM here
+    });
+    form.addEventListener('reset', function () { setTimeout(function () { show(0, 'back'); }, 0); });
+    show(0);
+  })();
 
   var again = document.querySelector('.ct-again');
   if (again) again.addEventListener('click', function () { cf.reset(); cf.classList.remove('sent'); $('.invalid', cf).forEach(function (x) { x.classList.remove('invalid'); }); });
