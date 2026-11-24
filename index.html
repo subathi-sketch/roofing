@@ -348,20 +348,64 @@
 
 <!-- AREAS -->
 <section class="areas" id="areas">
-  <div class="wrap areas-grid">
-    <div class="map-card" aria-hidden="true">
-      <div class="dots"></div>
-      <span class="pin p1"><i></i></span><span class="pin p2"><i></i></span><span class="pin p3"><i></i></span><span class="pin p4"><i></i></span>
+  <div class="wrap">
+    <div class="center svc-head">
+      <span class="tag">Service area</span>
+      <h2>Local Crews, <span class="blue">Close To Home</span></h2>
+      <p>Our crews work throughout the city and the surrounding towns, from tight urban streets to rural lanes. Pick an office to see where we are, or check your ZIP code.</p>
     </div>
-    <div class="areas-text">
-      <span class="tag">Service Area</span>
-      <h2>Local Crews, <span class="soft">Close To Home</span></h2>
-      <p>Our crews work throughout the city and the surrounding towns, from tight urban streets to rural lanes. Planned replacement or emergency repair, we can get a team to you quickly.</p>
-      <b class="loc-label">Headquarters:</b>
-      <ul class="locs"><li><a href="#contact">Main City</a></li></ul>
-      <b class="loc-label">Additional offices:</b>
-      <ul class="locs"><li><a href="#contact">North Branch</a></li><li><a href="#contact">East Branch</a></li><li><a href="#contact">South Branch</a></li></ul>
-      <a class="btn btn-soft" href="#contact">View All Cities We Serve</a>
+    <div class="svc">
+      <div class="svc-map" id="svc-map">
+        <svg viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="440" fill="#eaf0f6"/>
+          <path d="M-20 330C90 300 150 360 260 340S430 270 620 310V460H-20Z" fill="#d6e4f1"/>
+          <path d="M470 -10c-20 60 30 90 10 150s-70 70-60 150" fill="none" stroke="#c9dcee" stroke-width="26" stroke-linecap="round"/>
+          <ellipse cx="120" cy="90" rx="70" ry="42" fill="#dbe8dc"/>
+          <ellipse cx="520" cy="360" rx="60" ry="34" fill="#dbe8dc"/>
+          <g fill="none" stroke="#fff" stroke-linecap="round">
+            <path d="M-10 210C120 190 220 250 330 220S520 150 610 190" stroke-width="12"/>
+            <path d="M200 -10C230 90 190 160 250 230S300 360 280 450" stroke-width="10"/>
+            <path d="M380 -10C360 80 430 140 410 230S460 340 520 450" stroke-width="8"/>
+            <path d="M-10 90C100 130 210 70 320 110" stroke-width="5"/>
+            <path d="M60 450C90 380 170 330 250 350" stroke-width="5"/>
+          </g>
+          <circle id="svc-radius" cx="290" cy="212" r="150" fill="rgba(242,140,40,.08)" stroke="#f28c28" stroke-width="1.6" stroke-dasharray="6 7"/>
+        </svg>
+        <button class="mpin hq" data-i="0" style="left:48%;top:48%" aria-label="Main City HQ"><span class="mpin-dot"></span><span class="mpin-label">Main City HQ</span></button><button class="mpin" data-i="1" style="left:33%;top:22%" aria-label="North Branch"><span class="mpin-dot"></span><span class="mpin-label">North Branch</span></button><button class="mpin" data-i="2" style="left:73%;top:34%" aria-label="East Branch"><span class="mpin-dot"></span><span class="mpin-label">East Branch</span></button><button class="mpin" data-i="3" style="left:40%;top:76%" aria-label="South Branch"><span class="mpin-dot"></span><span class="mpin-label">South Branch</span></button>
+        <div class="map-legend"><span><i class="lg-hq"></i>Headquarters</span><span><i class="lg-br"></i>Branch office</span><span><i class="lg-rad"></i>Service radius</span></div>
+      </div>
+      <div class="svc-side">
+        <ul class="loc-list">
+        <li><button class="loc-row" data-i="0">
+          <span class="loc-num">1</span>
+          <span class="loc-txt"><b>Main City</b><small>Headquarters &middot; 1234 Main Street</small></span>
+          <span class="loc-hours">Mon&ndash;Fri 7&ndash;6</span>
+        </button></li>
+        <li><button class="loc-row" data-i="1">
+          <span class="loc-num">2</span>
+          <span class="loc-txt"><b>North Branch</b><small>Branch office &middot; 220 North Avenue</small></span>
+          <span class="loc-hours">Mon&ndash;Fri 8&ndash;5</span>
+        </button></li>
+        <li><button class="loc-row" data-i="2">
+          <span class="loc-num">3</span>
+          <span class="loc-txt"><b>East Branch</b><small>Branch office &middot; 88 East Park Road</small></span>
+          <span class="loc-hours">Mon&ndash;Fri 8&ndash;5</span>
+        </button></li>
+        <li><button class="loc-row" data-i="3">
+          <span class="loc-num">4</span>
+          <span class="loc-txt"><b>South Branch</b><small>Branch office &middot; 512 South Boulevard</small></span>
+          <span class="loc-hours">Mon&ndash;Sat 8&ndash;4</span>
+        </button></li>
+        </ul>
+        <form class="zip-card" id="zip-form" novalidate>
+          <label for="zip-in">Check your ZIP code</label>
+          <div class="zip-row">
+            <input id="zip-in" inputmode="numeric" maxlength="5" placeholder="Enter 5-digit ZIP" autocomplete="postal-code">
+            <button class="btn btn-lime" type="submit">Check coverage</button>
+          </div>
+          <p class="zip-msg" id="zip-msg" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   </div>
 </section>

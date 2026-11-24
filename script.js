@@ -103,8 +103,8 @@
   [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.ring-stat', 0], ['.nb-stat', 0], ['.nb-circle', 0], ['.nb-photo', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
     $(g[0]).forEach(function (el, i) { el.setAttribute('data-reveal', ''); el.style.setProperty('--d', (i % 4) * 0.12 + 's'); });
   });
-  $('.split-head > div, .pf-text, .about-text, .areas-text, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
-  $('.split-head > p, .cta-media, .pf-slider, .about-collage, .contact-form, .map-card').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
+  $('.split-head > div, .pf-text, .about-text, .svc-map, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
+  $('.split-head > p, .cta-media, .pf-slider, .about-collage, .contact-form, .svc-side').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
   $('.cta-inner, .numbers-head, .brands .center, details, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
@@ -293,6 +293,31 @@
       if (Math.abs(d) > 50) { go(active + (d < 0 ? 1 : -1)); restart(); }
     });
     go(active); restart();
+  })();
+
+  // ---------- service area map ----------
+  (function () {
+    var map = document.getElementById('svc-map'); if (!map) return;
+    var pins = $('.mpin', map), rows = $('.loc-row');
+    function pick(i) {
+      pins.forEach(function (p) { p.classList.toggle('on', +p.dataset.i === i); });
+      rows.forEach(function (r) { r.classList.toggle('on', +r.dataset.i === i); });
+    }
+    pins.forEach(function (p) { p.addEventListener('click', function () { pick(+p.dataset.i); }); });
+    rows.forEach(function (r) {
+      r.addEventListener('click', function () { pick(+r.dataset.i); });
+      r.addEventListener('mouseenter', function () { pick(+r.dataset.i); });
+    });
+    pick(0);
+    var form = document.getElementById('zip-form'), input = document.getElementById('zip-in'), msg = document.getElementById('zip-msg');
+    input.addEventListener('input', function () { input.value = input.value.replace(/\D/g, '').slice(0, 5); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var z = input.value.trim();
+      if (!/^\d{5}$/.test(z)) { msg.className = 'zip-msg bad'; msg.textContent = 'Please enter a 5-digit ZIP code.'; return; }
+      // demo only: replace with a real ZIP lookup
+      msg.className = 'zip-msg ok'; msg.innerHTML = 'Good news, we serve ' + z + '. <a href="#contact">Request your free inspection</a>';
+    });
   })();
 
   // ---------- click-to-select card stroke ----------
