@@ -20,16 +20,13 @@
   });
 
   // ---------- slide-out quote panel ----------
-  var panel = document.getElementById('quote-panel'), bg = document.getElementById('panel-bg'),
-      hint = document.getElementById('quote-hint');
-  function openPanel(e) { if (e) e.preventDefault(); panel.classList.add('open'); bg.classList.add('open'); hint.hidden = true; }
+  var panel = document.getElementById('quote-panel'), bg = document.getElementById('panel-bg');
+  function openPanel(e) { if (e) e.preventDefault(); panel.classList.add('open'); bg.classList.add('open'); }
   function closePanel() { panel.classList.remove('open'); bg.classList.remove('open'); }
   $('[data-open-quote]').forEach(function (b) { b.addEventListener('click', openPanel); });
   bg.addEventListener('click', closePanel);
   document.querySelector('.panel-close').addEventListener('click', closePanel);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
-  hint.querySelector('.x').addEventListener('click', function () { hint.hidden = true; });
-  setTimeout(function () { if (!panel.classList.contains('open')) hint.hidden = false; }, 2500);
 
   // ---------- forms ----------
   function valid(scope) {
