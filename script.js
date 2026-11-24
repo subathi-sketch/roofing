@@ -104,16 +104,26 @@
   window.addEventListener('load', go); setTimeout(go, 600);
 
   // ---------- reveal on scroll ----------
-  [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.stat-card', 0], ['.num-intro', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
+  [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.ring-stat', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
     $(g[0]).forEach(function (el, i) { el.setAttribute('data-reveal', ''); el.style.setProperty('--d', (i % 4) * 0.12 + 's'); });
   });
   $('.split-head > div, .pf-text, .about-text, .areas-text, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
   $('.split-head > p, .pf-slider, .team, .contact-form, .map-card').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
-  $('.cta-inner, .brands .center, details, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
+  $('.cta-inner, .numbers-head, .brands .center, details, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   $('[data-reveal]').forEach(function (e) { io.observe(e); });
+
+  // ---------- progress rings ----------
+  $('.ring').forEach(function (ring) {
+    var bar = ring.querySelector('.bar'), pct = parseFloat(ring.dataset.pct) / 100;
+    var o = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return; o.disconnect();
+      bar.style.strokeDashoffset = reduce ? 327 * (1 - pct) : 327 * (1 - pct);
+    }, { threshold: 0.5 });
+    o.observe(ring);
+  });
 
   // ---------- count-up ----------
   $('[data-count]').forEach(function (el) {
