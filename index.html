@@ -413,17 +413,72 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials" id="reviews">
   <svg class="chev right" viewBox="0 0 220 140" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 70 120 6v128z"/><path d="M40 70 140 12v116z"/><path d="M70 70 160 18v104z"/><path d="M100 70 180 24v92z"/></g></svg>
-  <div class="wrap">
-    <div class="center test-head">
-      <span class="ghost">Quality That Speaks Volumes</span>
-      <div class="agg"><b>4.9</b><span class="stars">★★★★★</span><small>(sample)</small></div>
+  <div class="wrap tm-grid">
+    <div class="tm-intro">
+      <span class="tag tag-light">Testimonials</span>
+      <h2>Quality That <span class="blue">Speaks Volumes</span></h2>
+      <div class="tm-score">
+        <strong>4.9</strong>
+        <div><span class="tm-stars big" aria-hidden="true">★★★★★</span><small>Average rating (sample data)</small></div>
+      </div>
+      <ul class="tm-facts">
+        <li><b>98%</b><span>would recommend us</span></li>
+        <li><b>1,200+</b><span>roofs completed</span></li>
+      </ul>
+      <p class="tm-note">Sample testimonials shown for layout only. Replace with real customer reviews before launch.</p>
     </div>
-    <div class="review-row">
-      <article class="r-card"><header><span class="r-av">A</span><div><b>Sample Customer</b><small>7 days ago</small></div></header><div class="stars">★★★★★</div><p>The team showed up on schedule, finished the new roof in two days and left the yard spotless. The final price matched the quote exactly.</p></article>
-      <article class="r-card"><header><span class="r-av b">B</span><div><b>Sample Customer</b><small>10 days ago</small></div></header><div class="stars">★★★★★</div><p>After the hailstorm they photographed everything and met my adjuster on the roof. It made the whole claim far less stressful.</p></article>
-      <article class="r-card"><header><span class="r-av c">C</span><div><b>Sample Customer</b><small>15 days ago</small></div></header><div class="stars">★★★★★</div><p>A leak that had puzzled me for months was found and fixed in a single visit. Polite, professional and honest advice.</p></article>
+    <div class="tm-stage" id="tm" aria-roledescription="carousel" aria-label="Customer reviews">
+      <div class="tm-cards">
+        <article class="tm-card on" aria-hidden="false">
+          <svg class="tm-quote" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V20C0 8 7 1 19 0v7c-6 1-9 5-9 10h9v19zM27 36V20C27 8 34 1 46 0v7c-6 1-9 5-9 10h9v19z"/></svg>
+          <p class="tm-text">The team showed up on schedule, finished the new roof in two days and left the yard spotless. The final price matched the quote exactly. I would hire them again without a second thought.</p>
+          <div class="tm-meta">
+            <span class="tm-av ">A</span>
+            <div><b>Sample Customer</b><small>Homeowner · 7 days ago</small></div>
+            <span class="tm-job">Roof replacement</span>
+            <span class="tm-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+        </article>
+        <article class="tm-card" aria-hidden="true">
+          <svg class="tm-quote" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V20C0 8 7 1 19 0v7c-6 1-9 5-9 10h9v19zM27 36V20C27 8 34 1 46 0v7c-6 1-9 5-9 10h9v19z"/></svg>
+          <p class="tm-text">After the hailstorm they photographed everything and met my adjuster on the roof. It made the whole insurance claim far less stressful, and the new shingles look fantastic.</p>
+          <div class="tm-meta">
+            <span class="tm-av b">B</span>
+            <div><b>Sample Customer</b><small>Homeowner · 10 days ago</small></div>
+            <span class="tm-job">Storm damage repair</span>
+            <span class="tm-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+        </article>
+        <article class="tm-card" aria-hidden="true">
+          <svg class="tm-quote" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V20C0 8 7 1 19 0v7c-6 1-9 5-9 10h9v19zM27 36V20C27 8 34 1 46 0v7c-6 1-9 5-9 10h9v19z"/></svg>
+          <p class="tm-text">A leak that had puzzled me for months was found and fixed in a single visit. Polite, professional and honest advice. They told me what I did not need to do, too.</p>
+          <div class="tm-meta">
+            <span class="tm-av c">C</span>
+            <div><b>Sample Customer</b><small>Homeowner · 15 days ago</small></div>
+            <span class="tm-job">Leak repair</span>
+            <span class="tm-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+        </article>
+        <article class="tm-card" aria-hidden="true">
+          <svg class="tm-quote" viewBox="0 0 48 36" aria-hidden="true"><path d="M0 36V20C0 8 7 1 19 0v7c-6 1-9 5-9 10h9v19zM27 36V20C27 8 34 1 46 0v7c-6 1-9 5-9 10h9v19z"/></svg>
+          <p class="tm-text">Our flat roof had been patched three times by other companies. They explained the real problem, replaced the membrane and the building has stayed dry ever since.</p>
+          <div class="tm-meta">
+            <span class="tm-av d">D</span>
+            <div><b>Sample Customer</b><small>Property manager · 3 weeks ago</small></div>
+            <span class="tm-job">Flat roof replacement</span>
+            <span class="tm-stars" aria-label="5 out of 5 stars">★★★★★</span>
+          </div>
+        </article>
+      </div>
+      <div class="tm-nav">
+        <div class="tm-picks"><button class="tm-pick on" data-i="0" aria-label="Review 1"><span class="tm-av ">A</span></button><button class="tm-pick" data-i="1" aria-label="Review 2"><span class="tm-av b">B</span></button><button class="tm-pick" data-i="2" aria-label="Review 3"><span class="tm-av c">C</span></button><button class="tm-pick" data-i="3" aria-label="Review 4"><span class="tm-av d">D</span></button></div>
+        <div class="tm-arrows">
+          <button id="tm-prev" aria-label="Previous review">&#8249;</button>
+          <button id="tm-next" aria-label="Next review">&#8250;</button>
+        </div>
+      </div>
+      <div class="tm-bar" aria-hidden="true"><span id="tm-bar"></span></div>
     </div>
-    <p class="center note-sm">Sample testimonials shown for layout only. Replace with real customer reviews before launch.</p>
   </div>
 </section>
 

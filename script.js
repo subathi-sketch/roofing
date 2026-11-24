@@ -103,8 +103,8 @@
   [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.ring-stat', 0], ['.nb-stat', 0], ['.nb-circle', 0], ['.nb-photo', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
     $(g[0]).forEach(function (el, i) { el.setAttribute('data-reveal', ''); el.style.setProperty('--d', (i % 4) * 0.12 + 's'); });
   });
-  $('.split-head > div, .pf-text, .about-text, .svc-map, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
-  $('.split-head > p, .cta-media, .pf-slider, .about-collage, .contact-form, .svc-side').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
+  $('.split-head > div, .pf-text, .about-text, .svc-map, .tm-intro, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
+  $('.split-head > p, .cta-media, .pf-slider, .about-collage, .contact-form, .tm-stage, .svc-side').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
   $('.cta-inner, .numbers-head, .brands .center, details, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
@@ -293,6 +293,37 @@
       if (Math.abs(d) > 50) { go(active + (d < 0 ? 1 : -1)); restart(); }
     });
     go(active); restart();
+  })();
+
+  // ---------- testimonials carousel ----------
+  (function () {
+    var box = document.getElementById('tm'); if (!box) return;
+    var cards = $('.tm-card', box), picks = $('.tm-pick', box), bar = document.getElementById('tm-bar'), cur = 0, timer, t0, raf, DUR = 7000;
+    function go(i) {
+      cur = (i + cards.length) % cards.length;
+      cards.forEach(function (c, k) { c.classList.toggle('on', k === cur); c.setAttribute('aria-hidden', k === cur ? 'false' : 'true'); });
+      picks.forEach(function (p, k) { p.classList.toggle('on', k === cur); });
+      restart();
+    }
+    function tick(t) {
+      if (!t0) t0 = t;
+      if (box.matches(':hover')) { t0 = t - (parseFloat(bar.style.width) || 0) / 100 * DUR; }
+      var p = Math.min((t - t0) / DUR, 1); bar.style.width = (p * 100) + '%';
+      if (p >= 1) { go(cur + 1); return; }
+      raf = requestAnimationFrame(tick);
+    }
+    function restart() {
+      cancelAnimationFrame(raf); t0 = 0; bar.style.width = '0%';
+      if (!reduce) raf = requestAnimationFrame(tick);
+    }
+    picks.forEach(function (p, k) { p.addEventListener('click', function () { go(k); }); });
+    document.getElementById('tm-prev').addEventListener('click', function () { go(cur - 1); });
+    document.getElementById('tm-next').addEventListener('click', function () { go(cur + 1); });
+    box.addEventListener('keydown', function (e) { if (e.key === 'ArrowLeft') go(cur - 1); if (e.key === 'ArrowRight') go(cur + 1); });
+    var sx = null;
+    box.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+    box.addEventListener('pointerup', function (e) { if (sx === null) return; var d = e.clientX - sx; sx = null; if (Math.abs(d) > 50) go(cur + (d < 0 ? 1 : -1)); });
+    restart();
   })();
 
   // ---------- service area map ----------

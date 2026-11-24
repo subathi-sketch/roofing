@@ -819,3 +819,46 @@ body{overflow-x:clip;max-width:100%}
 @media(max-width:1020px){.svc{grid-template-columns:1fr}.svc-map{min-height:380px}}
 @media(max-width:560px){.svc-map{min-height:320px}.loc-hours{display:none}.loc-row{grid-template-columns:auto 1fr}.zip-row{flex-direction:column}.zip-row .btn{width:100%}.mpin-label{font-size:10.5px}}
 @media(prefers-reduced-motion:reduce){.mpin.on::after{animation:none}}
+
+
+/* ===== testimonials v2: intro + featured review carousel ===== */
+.testimonials{padding:100px 0}
+.tm-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center;position:relative}
+.tm-intro h2{color:#fff;font-size:clamp(40px,4.6vw,64px);margin:6px 0 28px}
+.tm-score{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+.tm-score strong{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:88px;line-height:.85;color:var(--lime)}
+.tm-score small{display:block;color:#b4c4d6;font-size:12.5px;margin-top:4px}
+.tm-stars{color:#f5b400;letter-spacing:2px}
+.tm-stars.big{font-size:22px}
+.tm-facts{list-style:none;display:flex;gap:34px;margin-bottom:26px}
+.tm-facts li{border-left:2px solid rgba(255,255,255,.2);padding-left:14px}
+.tm-facts b{display:block;color:#fff;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:34px;line-height:1}
+.tm-facts span{color:#b4c4d6;font-size:12.5px}
+.tm-note{font-size:11.5px;color:#7f93a9;max-width:340px}
+.tm-stage{position:relative}
+.tm-cards{display:grid}
+.tm-card{grid-area:1/1;background:#fff;border-radius:26px;padding:42px 44px 34px;box-shadow:0 30px 70px rgba(0,0,0,.35);opacity:0;visibility:hidden;transform:translateY(22px) scale(.98);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),visibility 0s .6s;position:relative}
+.tm-card.on{opacity:1;visibility:visible;transform:none;transition:opacity .6s ease .1s,transform .6s cubic-bezier(.2,.7,.2,1) .1s,visibility 0s}
+.tm-quote{width:46px;fill:var(--lime);opacity:.9;margin-bottom:18px}
+.tm-text{font-size:clamp(17px,1.7vw,21px);line-height:1.6;color:#142B45;font-weight:500;margin-bottom:28px;letter-spacing:-.01em}
+.tm-meta{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:center;border-top:1px solid var(--line);padding-top:20px}
+.tm-av{width:46px;height:46px;border-radius:50%;background:var(--lime);display:grid;place-items:center;font-weight:700;color:#142B45;font-size:16px;grid-row:span 2}
+.tm-av.b{background:#9cc3e6}.tm-av.c{background:#f2c9a0}.tm-av.d{background:#b9d8b8}
+.tm-meta b{color:#142B45;font-size:15px;line-height:1.2;display:block}
+.tm-meta small{color:#6a7a8a;font-size:12.5px;display:block}
+.tm-job{grid-column:3;grid-row:1;justify-self:end;font-size:11.5px;font-weight:600;letter-spacing:.04em;background:rgba(242,140,40,.14);color:#b35f0c;padding:5px 12px;border-radius:999px}
+.tm-meta .tm-stars{grid-column:3;grid-row:2;justify-self:end;font-size:15px}
+.tm-nav{display:flex;align-items:center;justify-content:space-between;margin-top:26px}
+.tm-picks{display:flex;gap:12px}
+.tm-pick{background:none;border:2px solid transparent;border-radius:50%;padding:3px;cursor:pointer;opacity:.5;transition:.3s}
+.tm-pick .tm-av{width:42px;height:42px;font-size:15px;grid-row:auto}
+.tm-pick:hover{opacity:.9}
+.tm-pick.on{opacity:1;border-color:var(--lime)}
+.tm-arrows{display:flex;gap:10px}
+.tm-arrows button{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;font-size:26px;line-height:1;cursor:pointer;transition:.25s}
+.tm-arrows button:hover{background:var(--lime);border-color:var(--lime);color:#142B45}
+.tm-bar{height:3px;background:rgba(255,255,255,.12);border-radius:3px;margin-top:20px;overflow:hidden}
+.tm-bar span{display:block;height:100%;width:0;background:var(--lime)}
+@media(max-width:1020px){.tm-grid{grid-template-columns:1fr;gap:44px}}
+@media(max-width:640px){.testimonials{padding:76px 0}.tm-card{padding:28px 22px 24px}.tm-meta{grid-template-columns:auto 1fr}.tm-job,.tm-meta .tm-stars{grid-column:1/-1;grid-row:auto;justify-self:start;margin-top:8px}.tm-facts{gap:22px}.tm-score strong{font-size:70px}}
+@media(prefers-reduced-motion:reduce){.tm-card{transition:none}}
