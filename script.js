@@ -77,6 +77,25 @@
     }, 5000);
   }
 
+  // ---------- hero slider ----------
+  (function () {
+    var box = document.getElementById('hero-slider'), slides = $('.slide', box), dots = document.getElementById('hero-dots'), cur = 0, timer;
+    slides.forEach(function (_, i) {
+      var b = document.createElement('button'); b.setAttribute('aria-label', 'Slide ' + (i + 1));
+      b.addEventListener('click', function () { show(i); restart(); }); dots.appendChild(b);
+    });
+    function show(n) {
+      cur = (n + slides.length) % slides.length;
+      slides.forEach(function (s, i) { s.classList.toggle('active', i === cur); });
+      $('button', dots).forEach(function (b, i) { b.classList.toggle('on', i === cur); });
+    }
+    function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { show(cur + 1); }, 4500); }
+    var sx = null;
+    box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', function (e) { if (sx === null) return; var d = e.changedTouches[0].clientX - sx; if (Math.abs(d) > 40) { show(cur + (d < 0 ? 1 : -1)); restart(); } sx = null; });
+    show(0); restart();
+  })();
+
   // ---------- hero entrance ----------
   var hero = document.querySelector('.hero');
   $('.hero-copy > *').forEach(function (e, i) { e.style.setProperty('--i', i); });
@@ -113,7 +132,7 @@
 
   // ---------- scroll loop ----------
   var progress = document.getElementById('scroll-progress'), header = document.querySelector('.site-header'),
-      heroImg = document.querySelector('.hero-media img'), lastY = 0, ticking = false;
+      heroImg = document.getElementById('hero-slider'), lastY = 0, ticking = false;
   function onScroll() {
     var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';

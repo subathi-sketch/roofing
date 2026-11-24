@@ -306,3 +306,16 @@ details p{padding:0 44px 24px 0;color:#666;font-size:15px}
   .team-track figure{flex-basis:70%}
   .foot-row{justify-content:center;text-align:center}
 }
+
+/* ===== hero slider ===== */
+.hero-media img{position:static;border-radius:0;box-shadow:none;transform:none;aspect-ratio:auto}
+.hero-slider{position:relative;aspect-ratio:1.2;border-radius:var(--r);overflow:hidden;box-shadow:0 24px 60px rgba(14,54,90,.2);background:#dfe6ec;transform:translate3d(0,var(--py,0),0)}
+.hero-slider .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.07);transition:opacity .9s ease,transform 5.5s ease}
+.hero-slider .slide.active{opacity:1;transform:scale(1)}
+.hero-slider .dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:16px;z-index:3}
+.hero-slider .dots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.6);cursor:pointer;transition:.3s}
+.hero-slider .dots button.on{background:#fff;transform:scale(1.35)}
+.hero-media .deco-rect{border:1.5px solid var(--blue);background:transparent;z-index:3;width:42px;height:162px;left:-52px;top:155px}
+.hero-media .deco-rect.b{width:50px;height:150px;left:-77px;top:201px}
+.hero-media .deco-circle{width:84px;height:84px;left:-53px;top:197px;z-index:4;background:rgba(27,91,149,.94);box-shadow:none}
+@media(max-width:1020px){.hero-media .deco-rect,.hero-media .deco-circle{display:none}}
