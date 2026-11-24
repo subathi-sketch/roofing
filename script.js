@@ -53,9 +53,12 @@
   var cf = document.getElementById('contact-form');
   cf.addEventListener('submit', function (e) {
     e.preventDefault(); if (!valid(cf)) return;
-    cf.querySelector('.form-ok').hidden = false;
+    cf.classList.add('sent');
     // TODO: connect to your form handler / CRM here
   });
+
+  var again = document.querySelector('.ct-again');
+  if (again) again.addEventListener('click', function () { cf.reset(); cf.classList.remove('sent'); $('.invalid', cf).forEach(function (x) { x.classList.remove('invalid'); }); });
 
   // ---------- sliders ----------
   function slider(trackId, prevId, nextId, step) {
@@ -103,8 +106,8 @@
   [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.ring-stat', 0], ['.nb-stat', 0], ['.nb-circle', 0], ['.nb-photo', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
     $(g[0]).forEach(function (el, i) { el.setAttribute('data-reveal', ''); el.style.setProperty('--d', (i % 4) * 0.12 + 's'); });
   });
-  $('.split-head > div, .pf-text, .about-text, .svc-map, .tm-intro, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
-  $('.split-head > p, .cta-media, .pf-slider, .about-collage, .contact-form, .tm-stage, .svc-side').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
+  $('.split-head > div, .pf-text, .about-text, .svc-map, .tm-intro, .ct-info').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
+  $('.split-head > p, .cta-media, .pf-slider, .about-collage, .ct-form, .tm-stage, .svc-side').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
   $('.cta-inner, .numbers-head, .brands .center, .faq-item, .faq-intro, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
