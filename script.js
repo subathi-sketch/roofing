@@ -71,7 +71,7 @@
   slider('team-track', 'tm-prev', 'tm-next', function (t) { return t.firstElementChild.offsetWidth + 22; });
   if (!reduce) {
     setInterval(function () {
-      if (pf.matches(':hover')) return;
+      if (pf.matches(':hover') || pf.querySelector('.drag')) return;
       var end = pf.scrollLeft + pf.clientWidth >= pf.scrollWidth - 4;
       pf.scrollTo({ left: end ? 0 : pf.scrollLeft + pf.clientWidth + 20, behavior: 'smooth' });
     }, 5000);
@@ -117,7 +117,7 @@
 
   // ---------- before / after slider ----------
   (function () {
-    var box = document.getElementById('ba-box'); if (!box) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.ba-box'), function (box) {
     var pos = 50, dragging = false;
     function set(p) {
       pos = Math.max(0, Math.min(100, p));
@@ -146,6 +146,7 @@
       }, { threshold: 0.5 });
       o.observe(box);
     }
+    });
   })();
 
   // ---------- progress rings ----------

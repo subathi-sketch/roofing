@@ -564,3 +564,16 @@ summary{font-size:16.5px}
 .ba-box.hint .ba-before{transition:clip-path 1.2s cubic-bezier(.4,0,.2,1)}
 .ba-box.hint .ba-line{transition:left 1.2s cubic-bezier(.4,0,.2,1)}
 @media(max-width:640px){.ba{padding:64px 0 70px}.ba-box{aspect-ratio:1.15;border-radius:18px}.ba-handle{width:44px;height:44px;margin:-22px 0 0 -22px}.ba-pill{bottom:12px;font-size:11px;padding:7px 14px}}
+
+
+/* ===== portfolio: before/after slides ===== */
+.pf-track{gap:24px}
+.pf-track figure{flex:0 0 100%}
+.pf-track .ba-box{max-width:none;margin:0;aspect-ratio:1.75;box-shadow:0 20px 50px rgba(20,43,69,.18)}
+.pf-track figcaption{margin-top:16px}
+.pf-note{font-size:12px;color:#7a8896;margin-top:12px}
+.pf-ctrl{margin-top:12px}
+/* simulated "before" look: dull, desaturated, slightly dirty */
+.ba-before .ba-img{filter:grayscale(.55) sepia(.45) contrast(.82) brightness(.78) saturate(.8)}
+.ba-before::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(70,60,40,.28),transparent 60%),radial-gradient(ellipse at 80% 90%,rgba(40,50,30,.3),transparent 55%);pointer-events:none}
+.pf-track .ba-img{object-position:50% 30%}
