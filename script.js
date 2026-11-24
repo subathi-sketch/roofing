@@ -115,6 +115,39 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
   $('[data-reveal]').forEach(function (e) { io.observe(e); });
 
+  // ---------- before / after slider ----------
+  (function () {
+    var box = document.getElementById('ba-box'); if (!box) return;
+    var pos = 50, dragging = false;
+    function set(p) {
+      pos = Math.max(0, Math.min(100, p));
+      box.style.setProperty('--pos', pos + '%'); box.setAttribute('aria-valuenow', Math.round(pos));
+    }
+    function fromEvent(e) { var r = box.getBoundingClientRect(); set(((e.clientX - r.left) / r.width) * 100); }
+    box.addEventListener('pointerdown', function (e) {
+      dragging = true; box.classList.remove('hint'); box.classList.add('drag');
+      box.setPointerCapture(e.pointerId); fromEvent(e);
+    });
+    box.addEventListener('pointermove', function (e) { if (dragging) fromEvent(e); });
+    function end() { dragging = false; box.classList.remove('drag'); }
+    box.addEventListener('pointerup', end); box.addEventListener('pointercancel', end);
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { set(pos - 5); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { set(pos + 5); e.preventDefault(); }
+    });
+    if (!reduce) {
+      var o = new IntersectionObserver(function (en) {
+        if (!en[0].isIntersecting) return; o.disconnect();
+        box.classList.add('hint');
+        setTimeout(function () { set(30); }, 300);
+        setTimeout(function () { set(70); }, 1700);
+        setTimeout(function () { set(50); }, 3000);
+        setTimeout(function () { box.classList.remove('hint'); }, 4300);
+      }, { threshold: 0.5 });
+      o.observe(box);
+    }
+  })();
+
   // ---------- progress rings ----------
   $('.ring').forEach(function (ring) {
     var bar = ring.querySelector('.bar'), pct = parseFloat(ring.dataset.pct) / 100;
