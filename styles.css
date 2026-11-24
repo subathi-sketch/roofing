@@ -679,3 +679,27 @@ body{overflow-x:clip;max-width:100%}
 .numbers{overflow:hidden}
 .showcase,.showcase-pin{width:100%;max-width:100%}
 .tile-grid{left:0;right:0;width:100%}
+
+
+/* ===== about v2: photo collage + checklist ===== */
+.about-top2{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:84px;position:relative}
+.about-collage{position:relative;padding:0 0 70px 0;max-width:540px}
+.ac-main img{width:82%;aspect-ratio:.9;object-fit:cover;border-radius:26px 26px 26px 120px;margin-left:auto;display:block;box-shadow:0 24px 54px rgba(20,43,69,.2)}
+.ac-small{position:absolute;left:0;bottom:0;width:48%}
+.ac-small img{width:100%;aspect-ratio:1.1;object-fit:cover;border-radius:22px;border:8px solid #fff;box-shadow:0 18px 40px rgba(20,43,69,.22)}
+.ac-badge{position:absolute;right:-6px;bottom:22px;background:var(--blue);color:#fff;border-radius:20px;padding:18px 22px;display:flex;align-items:center;gap:14px;box-shadow:0 18px 40px rgba(20,43,69,.35);animation:floaty 5s ease-in-out infinite}
+.ac-badge strong{font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:52px;line-height:.9;color:var(--lime)}
+.ac-badge span{font-size:12.5px;line-height:1.35;max-width:110px;color:#dbe6f0}
+.ac-dots{position:absolute;left:-24px;top:-24px;width:140px;height:140px;background:radial-gradient(circle,rgba(242,140,40,.55) 2px,transparent 2.6px) 0 0/16px 16px;z-index:0}
+.about-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;margin:28px 0 34px}
+.about-list li{display:flex;align-items:center;gap:12px}
+.al-ico{width:44px;height:44px;border-radius:12px;background:rgba(242,140,40,.14);display:grid;place-items:center;flex:none}
+.al-ico svg{width:22px;height:22px;fill:none;stroke:var(--lime);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.about-list b{display:block;color:var(--blue);font-size:14.5px;line-height:1.25}
+.about-list small{display:block;color:#5b6b7a;font-size:12.5px;line-height:1.35}
+.about-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.about-call{font-size:14px;color:#4a5b6b}.about-call b{color:var(--blue);font-size:16px}
+.about-text p{max-width:470px}
+@media(max-width:1020px){.about-top2{grid-template-columns:1fr;gap:56px}.about-collage{margin:0 auto}}
+@media(max-width:640px){.about-list{grid-template-columns:1fr}.ac-badge{padding:12px 16px;right:0}.ac-badge strong{font-size:40px}.ac-dots{display:none}.about-top2{margin-bottom:56px}}
+@media(prefers-reduced-motion:reduce){.ac-badge{animation:none}}
