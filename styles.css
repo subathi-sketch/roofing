@@ -967,3 +967,8 @@ body{overflow-x:clip;max-width:100%}
 @media(max-width:1020px){.ct-card{grid-template-columns:1fr}.ct-info{padding:42px 32px}}
 @media(max-width:640px){.contact{padding:70px 0 80px}.ct-card{border-radius:24px}.ct-info{padding:34px 22px}.ct-form{padding:32px 20px 28px}.ct-grid{grid-template-columns:1fr}.ct-seg span{padding:8px 16px}}
 @media(prefers-reduced-motion:reduce){.ct-dot{animation:none}.ct-success,.ct-check,.ct-check svg{transition:none}}
+
+/* tighter gap between FAQ and contact (both sit on the same grey background) */
+.faq{padding-bottom:36px}
+.contact{padding-top:36px}
+@media(max-width:640px){.faq{padding-bottom:28px}.contact{padding-top:28px}}
