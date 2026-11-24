@@ -577,3 +577,21 @@ summary{font-size:16.5px}
 .ba-before .ba-img{filter:grayscale(.55) sepia(.45) contrast(.82) brightness(.78) saturate(.8)}
 .ba-before::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(70,60,40,.28),transparent 60%),radial-gradient(ellipse at 80% 90%,rgba(40,50,30,.3),transparent 55%);pointer-events:none}
 .pf-track .ba-img{object-position:50% 30%}
+
+
+/* ===== card stroke highlight: hover / focus / click shows only an orange outline ===== */
+.s-card,.brand,.r-card,.pillar{border:1.5px solid var(--line);border-radius:var(--r);cursor:pointer;outline:none;transition:border-color .25s ease}
+.s-card{padding:16px 16px 62px}
+.s-card .circ{right:18px;bottom:16px}
+.pillar{padding:28px 26px 30px;background:#fff}
+.r-card{border-radius:18px}
+.s-card:hover,.brand:hover,.r-card:hover,.pillar:hover,
+.s-card:focus-visible,.brand:focus-visible,.r-card:focus-visible,.pillar:focus-visible,
+.s-card.is-active,.brand.is-active,.r-card.is-active,.pillar.is-active{border-color:var(--lime)}
+/* keep it to the line only: no lift, zoom, shadow or colour shifts */
+.brand:hover,.r-card:hover{transform:none;box-shadow:none}
+.r-card{box-shadow:0 10px 26px rgba(0,0,0,.14)}
+.s-card:hover .s-img img{transform:none}
+.s-card:hover .circ{transform:none}
+.pillar:hover h3{color:#4a5b6b}
+.js .s-card[data-reveal],.js .brand[data-reveal],.js .r-card[data-reveal],.js .pillar[data-reveal]{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),border-color .25s ease;transition-delay:var(--d,0s),var(--d,0s),0s}

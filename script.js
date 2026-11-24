@@ -252,6 +252,19 @@
     frame();
   })();
 
+  // ---------- click-to-select card stroke ----------
+  $('.s-card, .brand, .r-card, .pillar').forEach(function (card) {
+    card.setAttribute('tabindex', '0');
+    function pick() {
+      $('.is-active', card.parentElement).forEach(function (x) { if (x !== card) x.classList.remove('is-active'); });
+      card.classList.toggle('is-active');
+    }
+    card.addEventListener('click', pick);
+    card.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target === card) { e.preventDefault(); pick(); }
+    });
+  });
+
   // ---------- scroll loop ----------
   var progress = document.getElementById('scroll-progress'), header = document.querySelector('.site-header'),
       heroImg = document.getElementById('hero-slider'), lastY = 0, ticking = false;
