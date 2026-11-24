@@ -864,3 +864,9 @@ body{overflow-x:clip;max-width:100%}
 @media(prefers-reduced-motion:reduce){.tm-card{transition:none}}
 
 .tm-nav{justify-content:flex-start}
+
+/* testimonials: no avatar circle */
+.tm-meta{grid-template-columns:1fr auto}
+.tm-job{grid-column:2}
+.tm-meta .tm-stars{grid-column:2}
+@media(max-width:640px){.tm-meta{grid-template-columns:1fr}.tm-job,.tm-meta .tm-stars{grid-column:1/-1}}
