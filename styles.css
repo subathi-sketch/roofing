@@ -862,3 +862,5 @@ body{overflow-x:clip;max-width:100%}
 @media(max-width:1020px){.tm-grid{grid-template-columns:1fr;gap:44px}}
 @media(max-width:640px){.testimonials{padding:76px 0}.tm-card{padding:28px 22px 24px}.tm-meta{grid-template-columns:auto 1fr}.tm-job,.tm-meta .tm-stars{grid-column:1/-1;grid-row:auto;justify-self:start;margin-top:8px}.tm-facts{gap:22px}.tm-score strong{font-size:70px}}
 @media(prefers-reduced-motion:reduce){.tm-card{transition:none}}
+
+.tm-nav{justify-content:flex-start}
