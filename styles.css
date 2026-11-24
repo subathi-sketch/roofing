@@ -14,7 +14,7 @@ ul{list-style:none}
 h1,h2{font-family:"Bebas Neue",Impact,sans-serif;font-weight:400;color:var(--ink);line-height:.98;letter-spacing:.005em;text-transform:uppercase}
 h2{font-size:clamp(44px,5.4vw,72px)}
 h3{font-size:24px;font-weight:600;color:var(--ink);line-height:1.25}
-.blue{color:var(--lime)}.soft{color:var(--soft)}.lime{color:var(--lime)}
+.blue{color:var(--lime)}.soft{color:var(--lime)}.lime{color:var(--lime)}
 section{position:relative}
 .tag{display:inline-block;border-left:2px solid #9a9a9a;padding-left:12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#4a5b6b;margin-bottom:18px;line-height:1.1}
 
