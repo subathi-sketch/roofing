@@ -91,13 +91,33 @@
 
 <!-- SCROLL STATEMENT (pinned, words light up) -->
 <section class="statement" aria-label="Our approach">
+  <div class="rings dark" aria-hidden="true"></div>
   <div class="statement-pin">
-    <p class="statement-text" data-words>Rain, hail, wind and snow test every roof. We build ours to <span class="ul">outlast all four</span>, one careful layer at a time.</p>
-    <ul class="chips">
-      <li>Inspected before quoted</li>
-      <li>Priced in writing</li>
-      <li>Cleaned up daily</li>
-    </ul>
+    <div class="wrap pt-grid">
+      <div class="pt-left">
+        <span class="tag">Our approach</span>
+        <p class="statement-text" data-words>Rain, hail, wind and snow test every roof. We build ours to <span class="ul">outlast all four</span>, one careful layer at a time.</p>
+        <div class="pt-progress" aria-hidden="true"><span id="pt-bar"></span></div>
+        <a class="btn btn-lime pt-cta" href="#contact">Book a Free Inspection</a>
+      </div>
+      <ol class="pt-cards">
+        <li class="pt-card" data-i="1">
+          <span class="pt-num">01</span>
+          <div class="pt-body"><h3>Inspected before quoted</h3><p>We climb up, photograph every problem area and only then write your estimate.</p></div>
+          <span class="pt-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12 12 4l9 8M6 10v10h12V10"/></svg></span>
+        </li>
+        <li class="pt-card" data-i="2">
+          <span class="pt-num">02</span>
+          <div class="pt-body"><h3>Priced in writing</h3><p>An itemized quote you can read line by line, with no surprises on installation day.</p></div>
+          <span class="pt-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></svg></span>
+        </li>
+        <li class="pt-card" data-i="3">
+          <span class="pt-num">03</span>
+          <div class="pt-body"><h3>Cleaned up daily</h3><p>Debris bagged, lawn protected and a magnet sweep for stray nails before we leave.</p></div>
+          <span class="pt-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg></span>
+        </li>
+      </ol>
+    </div>
   </div>
 </section>
 

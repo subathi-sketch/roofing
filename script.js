@@ -192,6 +192,12 @@
           var n = Math.round(Math.min(p / 0.8, 1) * words.length);
           words.forEach(function (w, i) { w.classList.toggle('on', i < n); });
           st.classList.toggle('done', p > 0.55);
+          var cards = document.querySelectorAll('.pt-card'), cur = -1;
+          cards.forEach(function (cd, i) {
+            var on = p > 0.18 + i * 0.2; cd.classList.toggle('on', on); if (on) cur = i;
+          });
+          cards.forEach(function (cd, i) { cd.classList.toggle('cur', i === cur); });
+          var pb = document.getElementById('pt-bar'); if (pb) pb.style.width = Math.min(p / 0.85, 1) * 100 + '%';
         }
         // showcase: tiles assemble into one photo
         var r2 = sc.getBoundingClientRect(), t2 = r2.height - window.innerHeight, q = Math.min(Math.max(-r2.top / t2, 0), 1);
