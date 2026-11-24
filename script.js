@@ -468,7 +468,7 @@
     var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
     if (!reduce && y < 900) heroImg.style.setProperty('--py', (y * 0.08) + 'px');
-    header.classList.toggle('hide', y > lastY && y > 500 && !nav.classList.contains('open'));
+    // header stays visible while scrolling (no auto-hide)
     lastY = y; ticking = false;
   }
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });

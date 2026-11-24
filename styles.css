@@ -1132,3 +1132,4 @@ img{height:auto}
 @media(min-width:641px) and (max-width:1020px){.wrap{width:min(960px,94%)}}
 @media(min-width:1700px){.wrap{width:min(1440px,88%)}.cf-stage{max-width:1280px}}
 .foot-social svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.site-header,.site-header.hide{transform:none!important}
