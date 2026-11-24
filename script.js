@@ -159,7 +159,7 @@
   window.addEventListener('load', go); setTimeout(go, 600);
 
   // ---------- reveal on scroll ----------
-  [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.ring-stat', 0], ['.nb-stat', 0], ['.nb-circle', 0], ['.nb-photo', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
+  [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.ring-stat', 0], ['.nb-stat', 0], ['.nb-circle .nb-clip', 0], ['.nb-photo .nb-clip', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
     $(g[0]).forEach(function (el, i) { el.setAttribute('data-reveal', ''); el.style.setProperty('--d', (i % 4) * 0.12 + 's'); });
   });
   $('.split-head > div, .pf-text, .about-text, .svc-map, .tm-intro, .ct-info').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
@@ -435,6 +435,21 @@
       if ((e.key === 'Enter' || e.key === ' ') && e.target === card) { e.preventDefault(); pick(); }
     });
   });
+
+  // ---------- stats band: light parallax on the photos ----------
+  (function () {
+    var band = document.querySelector('.numbers'); if (!band || reduce) return;
+    var t = false;
+    function upd() {
+      t = false;
+      var r = band.getBoundingClientRect(), vh = window.innerHeight;
+      if (r.bottom < -50 || r.top > vh + 50) return;
+      var p = ((r.top + r.height / 2) - vh / 2) / (vh / 2 + r.height / 2);
+      band.style.setProperty('--nbp', Math.max(-1, Math.min(1, p)).toFixed(3));
+    }
+    window.addEventListener('scroll', function () { if (!t) { t = true; requestAnimationFrame(upd); } }, { passive: true });
+    window.addEventListener('resize', upd); upd();
+  })();
 
   // ---------- scroll loop ----------
   var progress = document.getElementById('scroll-progress'), header = document.querySelector('.site-header'),

@@ -1073,3 +1073,55 @@ a,button,summary{-webkit-tap-highlight-color:transparent}
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:1020px){.pt-card{transform:translateY(18px)}.pt-card.on{transform:none}}
+
+
+/* ===== numbers band effects: hover + ambient motion ===== */
+.numbers{isolation:isolate}
+.nb-orb{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;filter:blur(8px)}
+.nb-orb.o1{width:420px;height:420px;left:-120px;top:20%;background:radial-gradient(circle,rgba(242,140,40,.28),transparent 68%);animation:orbA 14s ease-in-out infinite}
+.nb-orb.o2{width:380px;height:380px;right:-100px;bottom:5%;background:radial-gradient(circle,rgba(70,130,220,.28),transparent 68%);animation:orbB 17s ease-in-out infinite}
+@keyframes orbA{50%{transform:translate(90px,-50px) scale(1.15)}}
+@keyframes orbB{50%{transform:translate(-80px,40px) scale(1.2)}}
+
+/* photos: clip box, idle float, parallax, hover lift + zoom + shine + travelling stroke */
+.nb-circle,.nb-photo{position:relative;cursor:pointer;transform:translateY(calc(var(--nbp,0) * -22px));transition:transform .6s cubic-bezier(.2,.7,.2,1);animation:nbfloat 6s ease-in-out infinite}
+.nb-photo{animation-delay:-3s;animation-duration:7s}
+@keyframes nbfloat{50%{translate:0 -9px}}
+.nb-clip{position:relative;overflow:hidden;border-radius:inherit;height:100%}
+.nb-circle,.nb-circle .nb-clip{border-radius:50%}
+.nb-photo,.nb-photo .nb-clip{border-radius:22px}
+.nb-clip img{transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .6s;transform-origin:center}
+.nb-clip::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);transform:translateX(-130%);transition:transform .9s ease;pointer-events:none}
+.nb-circle::before,.nb-photo::before{content:"";position:absolute;inset:-5px;border-radius:inherit;padding:3px;pointer-events:none;z-index:2;
+  background:conic-gradient(from var(--a),transparent 0 52%,rgba(242,140,40,.2) 66%,var(--lime) 90%,#ffd9a8 98%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  opacity:0;transition:opacity .35s;animation:beam 2s linear infinite;animation-play-state:paused}
+.nb-circle:hover,.nb-photo:hover{animation-play-state:paused;transform:translateY(calc(var(--nbp,0) * -22px - 8px)) scale(1.05)}
+.nb-photo:hover{transform:translateY(calc(var(--nbp,0) * -22px - 8px)) scale(1.04) rotate(-1.6deg)}
+.nb-circle:hover{transform:translateY(calc(var(--nbp,0) * -22px - 8px)) scale(1.07) rotate(4deg)}
+.nb-circle:hover::before,.nb-photo:hover::before{opacity:1;animation-play-state:running}
+.nb-circle:hover .nb-clip img,.nb-photo:hover .nb-clip img{transform:scale(1.14)}
+.nb-circle:hover .nb-clip::after,.nb-photo:hover .nb-clip::after{transform:translateX(130%)}
+.nb-circle:hover img{transform:scale(1.18) rotate(-4deg)}
+.nb-circle:hover,.nb-photo:hover{filter:drop-shadow(0 18px 30px rgba(0,0,0,.4))}
+
+/* stats: hover glow, label underline, number pop */
+.nb-stat{position:relative;cursor:default;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.nb-stat strong{transition:transform .4s cubic-bezier(.2,.8,.3,1.3),text-shadow .4s,color .3s;display:inline-block;transform-origin:left center}
+.nb-stat span{position:relative;transition:transform .4s,color .3s}
+.nb-stat span::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:100%;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.nb-stat:hover{transform:translateY(-3px)}
+.nb-stat:hover strong{transform:scale(1.07);text-shadow:0 0 28px rgba(242,140,40,.55)}
+.nb-stat:hover span::after{transform:scaleX(1)}
+.nb-stat:hover span{color:#fff}
+.nb-c strong{background:linear-gradient(100deg,var(--lime) 40%,#ffd9a8 50%,var(--lime) 60%) 100% 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 5s ease-in-out infinite}
+@keyframes shimmer{60%,100%{background-position:0 0}}
+
+/* line art drifts slowly */
+.num-chev{animation:chevdrift 9s ease-in-out infinite}
+@keyframes chevdrift{50%{translate:-14px 0}}
+
+@media(hover:none){.nb-circle:hover,.nb-photo:hover{filter:none}}
+@media(prefers-reduced-motion:reduce){.nb-orb,.nb-circle,.nb-photo,.nb-c strong,.num-chev,.nb-circle::before,.nb-photo::before{animation:none}.nb-c strong{-webkit-text-fill-color:var(--lime);background:none}}
+img{height:auto}
