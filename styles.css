@@ -427,3 +427,27 @@ details p{padding:0 44px 24px 0;color:#4a5b6b;font-size:15px}
 @media(max-width:1020px){.ring-grid{grid-template-columns:1fr 1fr;row-gap:48px}.ring-stat:nth-child(3)::before{display:none}}
 @media(max-width:640px){.numbers{padding:120px 0 110px}.ring-grid{grid-template-columns:1fr 1fr;row-gap:40px}.ring-stat{padding:6px 10px}.ring-stat::before{display:none!important}.ring-stat h3{font-size:22px}.ring-stat p{font-size:12.5px}.ring strong{font-size:40px}}
 @media(prefers-reduced-motion:reduce){.ring .bar{transition:none}}
+
+
+/* ===== numbers band v4: reference-style staggered layout ===== */
+.numbers{padding:150px 0 140px}
+.nb-grid{display:grid;grid-template-columns:1fr 230px 1fr;grid-template-areas:"a circle b" "photo c c";gap:48px 44px;align-items:center}
+.nb-a{grid-area:a}.nb-circle{grid-area:circle}.nb-b{grid-area:b}.nb-photo{grid-area:photo}.nb-c{grid-area:c}
+.nb-stat{display:flex;align-items:center;gap:24px;color:#fff}
+.nb-stat strong{font-family:"Oswald","Bebas Neue",sans-serif;font-weight:300;font-size:clamp(70px,8.4vw,128px);line-height:.95;color:var(--lime);letter-spacing:-.01em;white-space:nowrap;text-transform:uppercase}
+.nb-stat span{font-family:"Oswald","Bebas Neue",sans-serif;font-weight:300;font-size:clamp(24px,2.6vw,40px);line-height:1.12;text-transform:uppercase;max-width:300px;letter-spacing:.005em}
+.nb-c strong{font-size:clamp(70px,8.4vw,128px)}
+.nb-c span{max-width:380px}
+.nb-circle img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+.nb-photo img{width:100%;aspect-ratio:1.55;object-fit:cover;border-radius:26px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+.num-chev{left:auto;right:2%;top:auto;bottom:80px;width:300px;transform:none;color:rgba(255,255,255,.18)}
+@media(max-width:1020px){
+  .nb-grid{grid-template-columns:1fr 1fr;grid-template-areas:"a circle" "b b" "photo c";gap:36px 30px}
+  .nb-circle{max-width:210px;justify-self:center}
+  .num-chev{display:none}
+}
+@media(max-width:640px){
+  .nb-grid{grid-template-columns:1fr;grid-template-areas:"a" "circle" "b" "photo" "c";gap:30px}
+  .nb-circle{max-width:190px}
+  .nb-stat{gap:16px}
+}
