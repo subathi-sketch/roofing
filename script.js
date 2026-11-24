@@ -19,6 +19,16 @@
     });
   });
 
+  // ---------- logo / "#top" links scroll to the very top ----------
+  $('a[href="#top"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      nav.classList.remove('open');
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+    });
+  });
+
   // ---------- slide-out quote panel ----------
   var panel = document.getElementById('quote-panel'), bg = document.getElementById('panel-bg');
   function openPanel(e) { if (e) e.preventDefault(); panel.classList.add('open'); bg.classList.add('open'); }
