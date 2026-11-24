@@ -382,3 +382,23 @@ details p{padding:0 44px 24px 0;color:#4a5b6b;font-size:15px}
 .foot-bottom a:hover{color:#fff}
 @media(max-width:1020px){.foot-grid{grid-template-columns:1fr 1fr;gap:40px}}
 @media(max-width:640px){.foot-grid{grid-template-columns:1fr;padding:52px 0 36px}.foot-cta-row{flex-direction:column;align-items:flex-start}.foot-row{flex-direction:column;text-align:left}}
+
+
+/* ===== numbers band: split layout ===== */
+.numbers-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:70px;align-items:center}
+.eyebrow-light{display:inline-block;border-left:2px solid var(--lime);padding-left:12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#c9d5e2;margin-bottom:16px;line-height:1.1}
+.num-intro h2{color:#fff;font-size:clamp(46px,5.2vw,76px);margin-bottom:18px}
+.num-intro p{color:#c9d5e2;max-width:420px;font-size:15px}
+.num-photos{display:flex;gap:16px;margin-top:34px}
+.num-photos .photo-pill{flex:1}
+.num-photos .photo-pill.wide{flex:1.5}
+.num-photos .photo-pill img{height:120px}
+.num-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:34px 30px 30px;position:relative;overflow:hidden;transition:.35s}
+.stat-card::before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:var(--lime);transform:scaleX(.18);transform-origin:left;transition:transform .5s ease}
+.stat-card:hover{background:rgba(255,255,255,.1);transform:translateY(-6px)}
+.stat-card:hover::before{transform:scaleX(1)}
+.stat-card strong{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:clamp(64px,6.4vw,96px);line-height:.95;color:var(--lime);margin-bottom:10px;font-variant-numeric:tabular-nums}
+.stat-card span{display:block;color:#fff;font-size:15px;line-height:1.45;max-width:210px}
+@media(max-width:1020px){.numbers-wrap{grid-template-columns:1fr;gap:44px}.num-intro p{max-width:none}}
+@media(max-width:640px){.num-grid{gap:14px}.stat-card{padding:24px 18px}.stat-card span{font-size:13.5px}.num-photos .photo-pill img{height:100px}}

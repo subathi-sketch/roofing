@@ -104,7 +104,7 @@
   window.addEventListener('load', go); setTimeout(go, 600);
 
   // ---------- reveal on scroll ----------
-  [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.stat', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
+  [['.s-card', 0], ['.pillar', 0], ['.brand', 0], ['.r-card', 0], ['.stat-card', 0], ['.num-intro', 0], ['.photo-pill', 0], ['.locs li', 0]].forEach(function (g) {
     $(g[0]).forEach(function (el, i) { el.setAttribute('data-reveal', ''); el.style.setProperty('--d', (i % 4) * 0.12 + 's'); });
   });
   $('.split-head > div, .pf-text, .about-text, .areas-text, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
