@@ -86,7 +86,8 @@
     });
     function show(n) {
       cur = (n + slides.length) % slides.length;
-      slides.forEach(function (s, i) { s.classList.toggle('active', i === cur); });
+      var old = slides.findIndex(function (s) { return s.classList.contains('active'); });
+      slides.forEach(function (s, i) { s.classList.toggle('prev', i === old && i !== cur); s.classList.toggle('active', i === cur); });
       $('button', dots).forEach(function (b, i) { b.classList.toggle('on', i === cur); });
     }
     function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { show(cur + 1); }, 4500); }
