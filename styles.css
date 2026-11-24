@@ -595,3 +595,30 @@ summary{font-size:16.5px}
 .s-card:hover .circ{transform:none}
 .pillar:hover h3{color:#4a5b6b}
 .js .s-card[data-reveal],.js .brand[data-reveal],.js .r-card[data-reveal],.js .pillar[data-reveal]{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),border-color .25s ease;transition-delay:var(--d,0s),var(--d,0s),0s}
+
+
+/* ===== moving stroke beam + restored image animations ===== */
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.s-card,.brand,.r-card,.pillar{position:relative}
+.s-card::before,.brand::before,.r-card::before,.pillar::before{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;pointer-events:none;z-index:3;
+  background:conic-gradient(from var(--a),transparent 0 58%,rgba(242,140,40,.15) 70%,var(--lime) 92%,#ffd9a8 98%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  opacity:0;transition:opacity .3s ease;animation:beam 2.2s linear infinite;animation-play-state:paused}
+.s-card:hover::before,.brand:hover::before,.r-card:hover::before,.pillar:hover::before,
+.s-card:focus-visible::before,.brand:focus-visible::before,.r-card:focus-visible::before,.pillar:focus-visible::before,
+.s-card.is-active::before,.brand.is-active::before,.r-card.is-active::before,.pillar.is-active::before{opacity:1;animation-play-state:running}
+@keyframes beam{to{--a:360deg}}
+/* line colour while the beam travels: soft orange, the beam itself is the bright part */
+.s-card:hover,.brand:hover,.r-card:hover,.pillar:hover,
+.s-card:focus-visible,.brand:focus-visible,.r-card:focus-visible,.pillar:focus-visible,
+.s-card.is-active,.brand.is-active,.r-card.is-active,.pillar.is-active{border-color:rgba(242,140,40,.35)}
+/* restored image / arrow animation on service cards */
+.s-card:hover .s-img img,.s-card.is-active .s-img img{transform:scale(1.07)}
+.s-card:hover .circ{transform:translateX(6px)}
+.s-card .circ{transition:transform .3s}
+/* image reveal when the card scrolls in: wipe + settle */
+.js .s-card[data-reveal] .s-img img{clip-path:inset(0 0 100% 0);transform:scale(1.18);transition:clip-path 1.1s cubic-bezier(.2,.7,.2,1) calc(var(--d,0s) + .15s),transform 1.4s cubic-bezier(.2,.7,.2,1) calc(var(--d,0s) + .15s)}
+.js .s-card[data-reveal].in .s-img img{clip-path:inset(0 0 0 0);transform:scale(1)}
+.js .s-card[data-reveal].in:hover .s-img img,.js .s-card[data-reveal].in.is-active .s-img img{transform:scale(1.07);transition:transform .7s ease}
+@media(prefers-reduced-motion:reduce){.s-card::before,.brand::before,.r-card::before,.pillar::before{animation:none}.js .s-card[data-reveal] .s-img img{clip-path:none;transform:none;transition:none}}
