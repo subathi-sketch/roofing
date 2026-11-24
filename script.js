@@ -126,7 +126,7 @@
   var pf = slider('pf-track', 'pf-prev', 'pf-next', function (t) { return t.clientWidth + 20; });
   if (!reduce) {
     setInterval(function () {
-      if (pf.matches(':hover') || pf.querySelector('.drag')) return;
+      if (document.hidden || pf.matches(':hover') || pf.querySelector('.drag')) return;
       var end = pf.scrollLeft + pf.clientWidth >= pf.scrollWidth - 4;
       pf.scrollTo({ left: end ? 0 : pf.scrollLeft + pf.clientWidth + 20, behavior: 'smooth' });
     }, 5000);
@@ -145,7 +145,7 @@
       slides.forEach(function (s, i) { s.classList.toggle('prev', i === old && i !== cur); s.classList.toggle('active', i === cur); });
       $('button', dots).forEach(function (b, i) { b.classList.toggle('on', i === cur); });
     }
-    function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { show(cur + 1); }, 4500); }
+    function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!document.hidden) show(cur + 1); }, 4500); }
     var sx = null;
     box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
     box.addEventListener('touchend', function (e) { if (sx === null) return; var d = e.changedTouches[0].clientX - sx; if (Math.abs(d) > 40) { show(cur + (d < 0 ? 1 : -1)); restart(); } sx = null; });
@@ -335,7 +335,7 @@
       });
       $('button', dots).forEach(function (b, k) { b.classList.toggle('on', k === active); });
     }
-    function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!root.matches(':hover')) go(active + 1); }, 4500); }
+    function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { if (!document.hidden && !root.matches(':hover')) go(active + 1); }, 4500); }
     cards.forEach(function (c, k) {
       c.addEventListener('click', function (e) { if (k !== active && !e.target.closest('a')) { go(k); restart(); } });
       c.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(k); restart(); } });
