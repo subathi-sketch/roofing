@@ -108,7 +108,7 @@
     $(g[0]).forEach(function (el, i) { el.setAttribute('data-reveal', ''); el.style.setProperty('--d', (i % 4) * 0.12 + 's'); });
   });
   $('.split-head > div, .pf-text, .about-text, .areas-text, .contact-text').forEach(function (e) { e.setAttribute('data-reveal', 'left'); });
-  $('.split-head > p, .pf-slider, .team, .contact-form, .map-card').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
+  $('.split-head > p, .cta-media, .pf-slider, .team, .contact-form, .map-card').forEach(function (e) { e.setAttribute('data-reveal', 'right'); });
   $('.cta-inner, .numbers-head, .brands .center, details, .small-note, .test-head').forEach(function (e, i) { e.setAttribute('data-reveal', ''); });
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });

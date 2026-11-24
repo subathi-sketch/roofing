@@ -638,3 +638,37 @@ summary{font-size:16.5px}
 /* hover orange on the circular slider arrows */
 .pf-ctrl button:hover{background:#fff;color:var(--blue)}
 @media(prefers-reduced-motion:reduce){.btn::before,.pf-ctrl button::before{animation:none}}
+
+
+/* ===== CTA band v2: split layout with photo ===== */
+.cta{text-align:left;padding:96px 0;background:radial-gradient(ellipse 60% 80% at 85% 20%,rgba(242,140,40,.14),transparent 60%),var(--blue)}
+.cta-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;position:relative}
+.cta-inner{position:relative;z-index:1}
+.cta h2{font-size:clamp(40px,4.8vw,66px);margin:6px 0 18px;text-align:left}
+.cta p{margin:0;max-width:540px;color:#c9d5e2;font-size:15px}
+.cta-points{list-style:none;display:grid;gap:11px;margin:26px 0 34px}
+.cta-points li{display:flex;align-items:center;gap:12px;color:#fff;font-size:14.5px;font-weight:500}
+.cta-points svg{width:22px;height:22px;padding:4px;border-radius:50%;background:var(--lime);fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.cta-actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.cta-call{display:flex;align-items:center;gap:14px;color:#fff;transition:.25s}
+.cta-call-ico{width:50px;height:50px;border-radius:50%;border:1.5px solid rgba(255,255,255,.35);display:grid;place-items:center;transition:.25s}
+.cta-call-ico svg{width:20px;height:20px}
+.cta-call-txt small{display:block;font-size:11.5px;color:#9fb3c7;letter-spacing:.04em;line-height:1.2}
+.cta-call-txt b{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:30px;letter-spacing:.04em;line-height:1.05}
+.cta-call:hover .cta-call-ico{background:var(--lime);border-color:var(--lime);color:var(--blue)}
+.cta-media{position:relative;padding:0 0 26px 26px}
+.cta-media img{width:100%;aspect-ratio:1.18;object-fit:cover;border-radius:26px;box-shadow:0 28px 60px rgba(0,0,0,.4);position:relative;z-index:1}
+.cta-ring{position:absolute;left:-6px;top:-24px;width:150px;height:150px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.3);animation:spin 28s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta-float{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;background:#fff;border-radius:16px;padding:12px 18px 12px 12px;box-shadow:0 16px 36px rgba(0,0,0,.28)}
+.cta-float b{display:block;color:var(--blue);font-size:14px;line-height:1.2}
+.cta-float small{display:block;color:#6a7a8a;font-size:11.5px}
+.cf-ico{width:40px;height:40px;border-radius:12px;background:rgba(242,140,40,.15);display:grid;place-items:center;flex:none}
+.cf-ico svg{width:20px;height:20px;fill:none;stroke:var(--lime);stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.cta-float-a{left:0;bottom:0;animation:floaty 5s ease-in-out infinite}
+.cta-float-b{right:-14px;top:30px;animation:floaty 5s ease-in-out -2.5s infinite}
+@keyframes floaty{50%{translate:0 -8px}}
+@media(max-width:1020px){.cta-grid{grid-template-columns:1fr;gap:44px}.cta-media{max-width:560px}.cta-float-b{right:0}}
+@media(max-width:640px){.cta{padding:70px 0}.cta-actions{gap:20px}.cta-media{padding:0 0 22px 0}.cta-float{padding:9px 14px 9px 9px}.cta-float b{font-size:12.5px}.cta-float small{font-size:10.5px}.cta-ring{display:none}.cta-float-b{top:14px}}
+@media(prefers-reduced-motion:reduce){.cta-ring,.cta-float{animation:none}}
+.cta .chev{left:auto;right:1.5%;top:22px;width:190px;transform:none;color:rgba(255,255,255,.16)}
